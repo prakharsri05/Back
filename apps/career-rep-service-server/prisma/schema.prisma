@@ -1,0 +1,60 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Resume {
+  createdAt  DateTime  @default(now())
+  file       Json?
+  id         String    @id @default(cuid())
+  updatedAt  DateTime  @updatedAt
+  uploadDate DateTime?
+}
+
+model Student {
+  createdAt  DateTime @default(now())
+  email      String?
+  githubLink String?
+  id         String   @id @default(cuid())
+  name       String?
+  updatedAt  DateTime @updatedAt
+}
+
+model InternshipExperience {
+  company   String?
+  createdAt DateTime  @default(now())
+  endDate   DateTime?
+  id        String    @id @default(cuid())
+  role      String?
+  startDate DateTime?
+  updatedAt DateTime  @updatedAt
+}
+
+model HackathonExperience {
+  createdAt   DateTime  @default(now())
+  date        DateTime?
+  description String?
+  id          String    @id @default(cuid())
+  name        String?
+  updatedAt   DateTime  @updatedAt
+}
+
+model Skill {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(cuid())
+  name        String?
+  updatedAt   DateTime @updatedAt
+}
+
+model PlacementScore {
+  createdAt      DateTime  @default(now())
+  dateCalculated DateTime?
+  id             String    @id @default(cuid())
+  score          Float?
+  updatedAt      DateTime  @updatedAt
+}
